@@ -14,7 +14,7 @@ git commit -m "Installing fugitive as submodule."
 ###Installing this Vim environment on another machine
 ``` 
 cd ~
-git clone http://github.com/peterjcaulfield/vim.git ~/.vim
+git clone http://github.com/peterjcaulfield/.vim.git
 ln -s ~/.vim/.vimrc ~/.vimrc
 cd ~/.vim
 git submodule init
