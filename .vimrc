@@ -7,7 +7,7 @@ set nocompatible   " Disable vi-compatibility
 
 set t_Co=256
  
-colorscheme xoria256
+colorscheme twilight256
 syntax on                       " Enable highlighting for syntax
 set guifont=Droid\ Sans\ Mono\ For\ Powerline:h16
 set guioptions-=T " Removes top toolbar
@@ -47,6 +47,8 @@ let g:mapleader = ","
  
 " Fast saves
 nmap <leader>w :w!<cr>
+
+nmap <leader>t :CtrlP<cr>
  
 " Down is really the next line
 nnoremap j gj
@@ -103,9 +105,6 @@ highlight Search cterm=underline
 " Swap files out of the project root
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
- 
-" Run PHPUnit tests
-map <Leader>t :!phpunit %<cr>
  
 " Easy motion stuff
 let g:EasyMotion_leader_key = '<Leader>'
