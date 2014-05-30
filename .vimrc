@@ -71,7 +71,6 @@ nmap 25 :vertical resize 40<cr>
 nmap 50 <c-w>=
 nmap 75 :vertical resize 120<cr>
 
- 
 nmap <C-b> :NERDTreeToggle<cr>
  
 "Load the current buffer in Chrome
@@ -88,7 +87,6 @@ map <leader>e :edit %%<cr>
 
 "insert code comment asterisk for new comment lines
 :set formatoptions+=r
-
 
 "Show (partial) command in the status line
 set showcmd
@@ -130,35 +128,11 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " Abbreviations
 abbrev pft PHPUnit_Framework_TestCase
  
-abbrev gm !php artisan generate:model
-abbrev gc !php artisan generate:controller
-abbrev gmig !php artisan generate:migration
- 
 " Auto-remove trailing spaces
 autocmd BufWritePre *.php :%s/\s\+$//e
  
 " Edit todo list for project
 nmap ,todo :e todo.txt<cr>
- 
-" Laravel framework commons
-nmap <leader>lr :e app/routes.php<cr>
-nmap <leader>lca :e app/config/app.php<cr>81Gf(%O
-nmap <leader>lcd :e app/config/database.php<cr>
-nmap <leader>lc :e composer.json<cr>
- 
-" Concept - load underlying class for Laravel
-function! FacadeLookup()
-    let facade = input('Facade Name: ')
-    let classes = {
-\       'Form': 'Html/FormBuilder.php',
-\       'Html': 'Html/HtmlBuilder.php',
-\       'File': 'Filesystem/Filesystem.php',
-\       'Eloquent': 'Database/Eloquent/Model.php'
-\   }
- 
-    execute ":edit vendor/laravel/framework/src/Illuminate/" . classes[facade]
-endfunction
-nmap ,lf :call FacadeLookup()<cr>
  
 " CtrlP Stuff
  
@@ -174,39 +148,17 @@ set wildignore+=*/public/forum/**
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
  
-" Create/edit file in the current directory
-nmap :ed :edit %:p:h/
- 
-" Prepare a new PHP class
-function! Class()
-    let name = input('Class name? ')
-    let namespace = input('Any Namespace? ')
- 
-    if strlen(namespace)
-        exec 'normal i<?php namespace ' . namespace . ';
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
     else
-        exec 'normal i<?php
+        return "\<c-p>"
     endif
- 
-    " Open class
-    exec 'normal iclass ' . name . ' {^M}^[O^['
-    
-    exec 'normal i^M    public function __construct()^M{^M ^M}^['
 endfunction
-nmap ,1  :call Class()<cr>
- 
-" Add a new dependency to a PHP class
-function! AddDependency()
-    let dependency = input('Var Name: ')
-    let namespace = input('Class Path: ')
- 
-    let segments = split(namespace, '\')
-    let typehint = segments[-1]
- 
-    exec 'normal gg/construct^M:H^Mf)i, ' . typehint . ' $' . dependency . '^[/}^>O$this->^[a' . dependency . ' = $' . dependency . ';^[?{^MkOprotected $' . dependency . ';^M^[?{^MOuse ' . namespace . ';^M^['
- 
-    " Remove opening comma if there is only one dependency
-    exec 'normal :%s/(, /(/g
-'
-endfunction
-nmap ,2  :call AddDependency()<cr>
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
