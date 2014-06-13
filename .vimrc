@@ -65,11 +65,12 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
  
-"Resize vsplit
-nmap <C-v> :vertical resize +5<cr>
-nmap 25 :vertical resize 40<cr>
+"Resize splits
+nmap <C-h> :vertical resize +5<cr>
+nmap <C-j> :vertical resize -5<cr>
+nmap <C-k> :res +5<cr>
+nmap <C-l> :res -5<cr>
 nmap 50 <c-w>=
-nmap 75 :vertical resize 120<cr>
 
 nmap <C-b> :NERDTreeToggle<cr>
  
@@ -147,7 +148,18 @@ set wildignore+=*/public/forum/**
 " Open splits
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
- 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Xdebug configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin config
+let  g:vdebug_options = { 
+\ "break_on_open" : 0,
+\}
+" key bindings
+
+nmap <leader>b :Breakpoint<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
