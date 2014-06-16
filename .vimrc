@@ -6,8 +6,11 @@ set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 set nocompatible   " Disable vi-compatibility
 
 set t_Co=256
- 
-colorscheme twilight256
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+"let g:solarized_termcolors=16
+"set background=light
+colorscheme solarized
 syntax on                       " Enable highlighting for syntax
 set guifont=Droid\ Sans\ Mono\ For\ Powerline:h16
 set guioptions-=T " Removes top toolbar
