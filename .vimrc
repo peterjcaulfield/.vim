@@ -80,9 +80,6 @@ nmap <C-b> :NERDTreeToggle<cr>
 "Load the current buffer in Chrome
 nmap ,c :!open -a Google\ Chrome<cr>
 
-"execute the current php file we are editing (this should be made to allow for diff file types eventually)
-nmap <leader>r :!php -d display_errors %<cr>
-
 "source the current file
 nmap <leader>s :!source %<cr> 
 
@@ -152,15 +149,19 @@ set wildignore+=*/public/forum/**
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
 
+" toggle folds with spacebar
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Xdebug configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " plugin config
 let  g:vdebug_options = { 
 \ "break_on_open" : 0,
 \}
-" key bindings
 
+" key bindings
 nmap <leader>b :Breakpoint<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,3 +178,19 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Execute current file 
+" TODO: add execs for other common filetypes: python etc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! ExecFile()
+    let filetype = &ft
+    if filetype == "php"
+        :!php -d display_errors %        
+    else
+        :echo "filetype: " . filetype 
+        :echo "execute binding for this filetype is not present in vimrc"
+    endif
+endfunction 
+
+nmap <leader>r :call ExecFile()<cr>
