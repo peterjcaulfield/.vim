@@ -42,6 +42,8 @@ set wildmode=longest,list       "format wildmenu tab completion
 set wildmenu                    "make tab completion for files/buffers act like bash 
 set foldmethod=manual
 
+let g:miniBufExplorerAutoStart=1 
+
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -82,8 +84,10 @@ nmap ,c :!open -a Google\ Chrome<cr>
 "source the current file
 nmap <leader>s :!source %<cr> 
 
+" list buffers
+
 "Open files in directory of current file
-map <leader>e :edit %%<cr>
+nmap <leader>l :ls<cr>
 
 "insert code comment asterisk for new comment lines
 :set formatoptions+=r
@@ -200,6 +204,8 @@ nmap <leader>r :call ExecFile()<cr>
 " save and load folds 
 autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
+
 " enable phpfolding.vim only on php files
 let g:DisableAutoPHPFolding = 1
 au FileType php EnableFastPHPFolds
+
