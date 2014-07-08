@@ -194,3 +194,10 @@ function! ExecFile()
 endfunction 
 
 nmap <leader>r :call ExecFile()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Hooks
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" save and load folds 
+au BufWinLeave * mkview             
+au BufWinEnter * silent loadview
