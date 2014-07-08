@@ -38,11 +38,15 @@ set visualbell                  " don't beep
 set noerrorbells                " don't beep
 set autowrite                   "Save on buffer switch
 set mouse=a
-
 set wildmode=longest,list       "format wildmenu tab completion 
 set wildmenu                    "make tab completion for files/buffers act like bash 
+set foldmethod=manual
+let php_folding=0
+EnableFastPHPFolds
+"set foldmethod=syntax           " automatic folding
+"set foldlevelstart=1           " open file with folds open
+"let php_folding=20               " enable autofolding for PHP
 
- 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -199,5 +203,5 @@ nmap <leader>r :call ExecFile()<cr>
 " Hooks
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " save and load folds 
-au BufWinLeave * mkview             
-au BufWinEnter * silent loadview
+" au BufWinLeave * mkview             
+" au BufWinEnter * silent loadview
