@@ -198,8 +198,8 @@ nmap <leader>r :call ExecFile()<cr>
 " Hooks
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " save and load folds 
-" au BufWinLeave * mkview             
-" au BufWinEnter * silent loadview
+autocmd BufWinLeave *.* mkview!
+autocmd BufWinEnter *.* silent loadview
 " enable phpfolding.vim only on php files
 let g:DisableAutoPHPFolding = 1
 au FileType php EnableFastPHPFolds
