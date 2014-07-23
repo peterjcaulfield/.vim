@@ -41,7 +41,33 @@ set mouse=a
 set wildmode=longest,list       "format wildmenu tab completion 
 set wildmenu                    "make tab completion for files/buffers act like bash 
 set foldmethod=manual
+set wildignore+=*/vendor/**     " I don't want to pull up these folders/files when calling CtrlP
+ 
 
+highlight Search cterm=underline
+ 
+" Swap files out of the project root
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+ 
+" enable phpfolding.vim only on php files
+let g:DisableAutoPHPFolding = 1
+
+" Easy motion stuff
+let g:EasyMotion_leader_key = '<Leader>'
+ 
+" Powerline (Fancy thingy at bottom stuff)
+let g:Powerline_symbols = 'fancy'
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+"insert code comment asterisk for new comment lines
+:set formatoptions+=r
+
+"Show (partial) command in the status line
+set showcmd
+ 
 let g:miniBufExplorerAutoStart=1 
 
 " With a map leader it's possible to do extra key combinations
@@ -49,6 +75,33 @@ let g:miniBufExplorerAutoStart=1
 let mapleader = ","
 let g:mapleader = ","
  
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd cursorhold * set nohlsearch
+autocmd cursormoved * set hlsearch
+
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+ 
+" Abbreviations
+abbrev pft PHPUnit_Framework_TestCase
+ 
+" Auto-remove trailing spaces
+autocmd BufWritePre *.php :%s/\s\+$//e
+ 
+" save and load folds 
+autocmd BufWinLeave *.* mkview!
+autocmd BufWinEnter *.* silent loadview
+
+au FileType php EnableFastPHPFolds
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Normal Mode Key Maps
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast saves
 nmap <leader>w :w!<cr>
 
@@ -57,9 +110,6 @@ nmap <leader>t :CtrlP<cr>
 " Down is really the next line
 nnoremap j gj
 nnoremap k gk
- 
-"Easy escaping to normal model
-imap jj <esc> 
  
 "Auto change directory to match current file ,cd
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
@@ -85,16 +135,13 @@ nmap ,c :!open -a Google\ Chrome<cr>
 nmap <leader>s :!source %<cr> 
 
 " list buffers
-
+  
 "Open files in directory of current file
 nmap <leader>l :ls<cr>
 
-"insert code comment asterisk for new comment lines
-:set formatoptions+=r
+" create xdebug breakpoint
+nmap <leader>b :Breakpoint<cr>
 
-"Show (partial) command in the status line
-set showcmd
- 
 " Create split below
 nmap :sp :rightbelow sp<cr>
 
@@ -102,51 +149,11 @@ nmap :sp :rightbelow sp<cr>
 nmap :bp :BufSurfBack<cr>
 nmap :bn :BufSurfForward<cr>
  
-highlight Search cterm=underline
- 
-" Swap files out of the project root
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
- 
-" Easy motion stuff
-let g:EasyMotion_leader_key = '<Leader>'
- 
-" Powerline (Fancy thingy at bottom stuff)
-let g:Powerline_symbols = 'fancy'
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
- 
-autocmd cursorhold * set nohlsearch
-autocmd cursormoved * set hlsearch
- 
 " Remove search results
 command! H let @/=""
  
-" If you prefer the Omni-Completion tip window to close when a selection is
-" made, these lines close it on movement in insert mode or when leaving
-" insert mode
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
- 
-" Abbreviations
-abbrev pft PHPUnit_Framework_TestCase
- 
-" Auto-remove trailing spaces
-autocmd BufWritePre *.php :%s/\s\+$//e
- 
 " Edit todo list for project
 nmap ,todo :e todo.txt<cr>
- 
-" CtrlP Stuff
- 
-" Familiar commands for file/symbol browsing
-map <D-p> :CtrlP<cr>
-"map <C-r> :CtrlPBufTag<cr>
- 
-" I don't want to pull up these folders/files when calling CtrlP
-set wildignore+=*/vendor/**
-set wildignore+=*/public/forum/**
  
 " Open splits
 nmap vs :vsplit<cr>
@@ -154,6 +161,16 @@ nmap sp :split<cr>
 
 " toggle folds with spacebar
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Insert Mode Key Maps
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"Easy escaping to normal mode
+imap jj <esc> 
+
+" Insert hash rocket
+imap <c-l> <space>=><space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Xdebug configuration
@@ -164,13 +181,11 @@ let  g:vdebug_options = {
 \ "break_on_open" : 0,
 \}
 
-" key bindings
-nmap <leader>b :Breakpoint<cr>
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -182,10 +197,8 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Execute current file 
 " TODO: add execs for other common filetypes: python etc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ExecFile()
     let filetype = &ft
     if filetype == "php"
@@ -197,15 +210,3 @@ function! ExecFile()
 endfunction 
 
 nmap <leader>r :call ExecFile()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Hooks
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" save and load folds 
-autocmd BufWinLeave *.* mkview!
-autocmd BufWinEnter *.* silent loadview
-
-" enable phpfolding.vim only on php files
-let g:DisableAutoPHPFolding = 1
-au FileType php EnableFastPHPFolds
-
