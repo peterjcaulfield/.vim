@@ -106,6 +106,8 @@ au FileType php EnableFastPHPFolds
 nmap <leader>w :w!<cr>
 
 nmap <leader>t :CtrlP<cr>
+
+nmap <leader>d :Dash<cr>
  
 " Down is really the next line
 nnoremap j gj
