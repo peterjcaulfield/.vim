@@ -9,7 +9,7 @@ set t_Co=256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 "let g:solarized_termcolors=16
-"set background=light
+set background=light
 colorscheme solarized
 syntax on                       " Enable highlighting for syntax
 set guifont=Droid\ Sans\ Mono\ For\ Powerline:h16
