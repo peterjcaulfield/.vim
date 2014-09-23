@@ -108,6 +108,8 @@ nmap <leader>w :w!<cr>
 nmap <leader>t :CtrlP<cr>
 
 nmap <leader>d :Dash<cr>
+
+nmap <leader>c :MBEbd<cr>
  
 " Down is really the next line
 nnoremap j gj
@@ -131,7 +133,7 @@ nmap 50 <c-w>=
 nmap <C-b> :NERDTreeToggle<cr>
  
 "Load the current buffer in Chrome
-nmap ,c :!open -a Google\ Chrome<cr>
+"nmap ,c :!open -a Google\ Chrome<cr>
 
 "source the current file
 nmap <leader>s :!source %<cr> 

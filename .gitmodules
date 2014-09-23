@@ -28,3 +28,6 @@
 [submodule "bundle/rizzatti"]
 	path = bundle/rizzatti
 	url = https://github.com/rizzatti/dash.vim.git
+[submodule "bundle/vim-php-cs-fixer"]
+	path = bundle/vim-php-cs-fixer
+	url = https://github.com/stephpy/vim-php-cs-fixer.git
