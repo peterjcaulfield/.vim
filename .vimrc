@@ -17,6 +17,7 @@ set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 set linespace=15
+set clipboard=unnamed 
  
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines
@@ -184,6 +185,15 @@ imap <c-l> <space>=><space>
 let  g:vdebug_options = { 
 \ "break_on_open" : 0,
 \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-php-cs-fixer config 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:php_cs_fixer_enable_default_mapping = 0     " Enable the mapping by default (<leader>pcd)
+
+nmap <leader>f :call PhpCsFixerFixFile()<cr>
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
