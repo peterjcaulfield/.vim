@@ -9,8 +9,8 @@ set t_Co=256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 "let g:solarized_termcolors=16
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme sexy-railscasts-256 
 syntax on                       " Enable highlighting for syntax
 set guifont=Droid\ Sans\ Mono\ For\ Powerline:h16
 set guioptions-=T " Removes top toolbar
@@ -178,6 +178,19 @@ imap jj <esc>
 imap <c-l> <space>=><space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Php syntax highlighting config 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PhpSyntaxOverride()
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Xdebug configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -192,8 +205,6 @@ let  g:vdebug_options = {
 let g:php_cs_fixer_enable_default_mapping = 0     " Enable the mapping by default (<leader>pcd)
 
 nmap <leader>f :call PhpCsFixerFixFile()<cr>
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
