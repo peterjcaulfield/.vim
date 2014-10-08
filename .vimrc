@@ -5,7 +5,7 @@
 call pathogen#incubate()
 call pathogen#helptags()
 execute pathogen#infect()
-
+filetype plugin on
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 set nocompatible   " Disable vi-compatibility
 
@@ -106,7 +106,7 @@ nmap <leader>t :CtrlP<cr>
 
 nmap <leader>d :Dash<cr>
 
-nmap <leader>c :MBEbd<cr>
+nmap <leader>x :MBEbd<cr>
  
 " Down is really the next line
 nnoremap j gj
