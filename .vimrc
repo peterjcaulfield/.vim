@@ -1,3 +1,7 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Base configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" initialise plugin manager
 call pathogen#incubate()
 call pathogen#helptags()
 execute pathogen#infect()
@@ -18,7 +22,6 @@ set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 set linespace=15
 set clipboard=unnamed 
- 
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines
 set tabstop=4                   " a tab is four spaces
@@ -44,7 +47,6 @@ set wildmenu                    "make tab completion for files/buffers act like 
 set foldmethod=manual
 set wildignore+=*/vendor/**     " I don't want to pull up these folders/files when calling CtrlP
  
-
 highlight Search cterm=underline
  
 " Swap files out of the project root
@@ -57,12 +59,6 @@ let g:DisableAutoPHPFolding = 1
 " Easy motion stuff
 let g:EasyMotion_leader_key = '<Leader>'
  
-" Powerline (Fancy thingy at bottom stuff)
-let g:Powerline_symbols = 'fancy'
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-
 "insert code comment asterisk for new comment lines
 :set formatoptions+=r
 
@@ -131,7 +127,7 @@ nmap <C-k> :res +5<cr>
 nmap <C-l> :res -5<cr>
 nmap 50 <c-w>=
 
-nmap <C-b> :NERDTreeToggle<cr>
+nmap <C-a> :NERDTreeToggle<cr>
  
 "Load the current buffer in Chrome
 "nmap ,c :!open -a Google\ Chrome<cr>
@@ -178,8 +174,9 @@ imap jj <esc>
 imap <c-l> <space>=><space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Php syntax highlighting config 
+" syntax highlighting conig 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" docblocks get highlighting for @ declarations
 function! PhpSyntaxOverride()
     hi! def link phpDocTags  phpDefine
     hi! def link phpDocParam phpType
@@ -191,9 +188,22 @@ augroup phpSyntaxOverride
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Powerline config 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Powerline_symbols = 'fancy'
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Nerd Tree Config 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" space bar to open dirs
+let NERDTreeMapActivateNode='<space>'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Xdebug configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " plugin config
 let  g:vdebug_options = { 
 \ "break_on_open" : 0,
@@ -202,7 +212,8 @@ let  g:vdebug_options = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-php-cs-fixer config 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:php_cs_fixer_enable_default_mapping = 0     " Enable the mapping by default (<leader>pcd)
+" Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_enable_default_mapping = 0     
 
 nmap <leader>f :call PhpCsFixerFixFile()<cr>
 
