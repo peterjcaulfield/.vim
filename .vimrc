@@ -57,10 +57,10 @@ set directory=~/.vim/swap//
 let g:DisableAutoPHPFolding = 1
 
 " Easy motion stuff
-let g:EasyMotion_leader_key = '<Leader>'
- 
+let g:EasyMotion_leader_key = '<Space>'
+
 "insert code comment asterisk for new comment lines
-:set formatoptions+=r
+"set formatoptions+=r
 
 "Show (partial) command in the status line
 set showcmd
@@ -71,6 +71,8 @@ let g:miniBufExplorerAutoStart=1
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
+
+"map \<Space> <Plug>(easymotion)
  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto commands
@@ -99,6 +101,9 @@ au FileType php EnableFastPHPFolds
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Normal Mode Key Maps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" default easy motion search with one key stroke
+nmap s <Plug>(easymotion-s2)
+
 " Fast saves
 "nmap <leader>w :w!<cr>
 
