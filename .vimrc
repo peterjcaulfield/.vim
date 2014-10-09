@@ -100,7 +100,7 @@ au FileType php EnableFastPHPFolds
 " Normal Mode Key Maps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fast saves
-nmap <leader>w :w!<cr>
+"nmap <leader>w :w!<cr>
 
 nmap <leader>t :CtrlP<cr>
 
@@ -133,7 +133,9 @@ nmap <C-a> :NERDTreeToggle<cr>
 "nmap ,c :!open -a Google\ Chrome<cr>
 
 "source the current file
-nmap <leader>s :!source %<cr> 
+"nmap <leader>s :!source %<cr> 
+"home row fast saves
+nmap <leader>s :w!<cr> 
 
 " list buffers
   
