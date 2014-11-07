@@ -86,9 +86,6 @@ autocmd cursormoved * set hlsearch
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
  
-" Abbreviations
-abbrev pft PHPUnit_Framework_TestCase
- 
 " Auto-remove trailing spaces
 autocmd BufWritePre *.php :%s/\s\+$//e
  
@@ -107,11 +104,13 @@ nmap s <Plug>(easymotion-s2)
 " Fast saves
 "nmap <leader>w :w!<cr>
 
-nmap <leader>t :CtrlP<cr>
+nmap <leader>g :CtrlP<cr>
 
 nmap <leader>d :Dash<cr>
 
 nmap <leader>x :MBEbd<cr>
+
+nmap <leader>t :!clear && phpunit -c %:p:h/../phpunit.xml %<cr>
  
 " Down is really the next line
 nnoremap j gj
@@ -233,6 +232,7 @@ nmap <leader>f :call PhpCsFixerFixFile()<cr>
 " ultisnips config 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<tab>"
+let g:snips_author="Peter Caulfield"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
