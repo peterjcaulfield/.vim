@@ -83,8 +83,8 @@ autocmd cursormoved * set hlsearch
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
 " insert mode
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
  
 " Auto-remove trailing spaces
 autocmd BufWritePre *.php :%s/\s\+$//e
@@ -94,6 +94,10 @@ autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
 
 au FileType php EnableFastPHPFolds
+
+" we want relative line numbers when moving around and absolute in insert
+autocmd InsertEnter * :set norelativenumber
+autocmd InsertLeave * :set relativenumber
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Normal Mode Key Maps
