@@ -45,7 +45,7 @@ set mouse=a
 set wildmode=longest,list       "format wildmenu tab completion 
 set wildmenu                    "make tab completion for files/buffers act like bash 
 set foldmethod=manual
-set wildignore+=*/vendor/**     " I don't want to pull up these folders/files when calling CtrlP
+set wildignore+=*/vendor/**,*/node_modules/**,*/bower_components/**     " I don't want to pull up these folders/files when calling CtrlP
  
 highlight Search cterm=underline
  
