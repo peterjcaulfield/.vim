@@ -272,7 +272,7 @@ function! ExecFile()
     if filetype == "php"
         :!php -d display_errors %        
     elseif filetype == "javascript"
-        :!node %
+        :!node -p "$(cat %)"
     else
         :echo "filetype: " . filetype 
         :echo "execute binding for this filetype is not present in vimrc"
