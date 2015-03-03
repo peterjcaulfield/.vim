@@ -50,8 +50,6 @@ highlight Title                     guifg=#FFFFFF ctermfg=15
 highlight Type                      guifg=#DA4939 ctermfg=167 gui=NONE cterm=NONE
 highlight Visual                    guibg=#5A647E ctermbg=60
 
-highlight DiffAdd                   guifg=#E6E1DC ctermfg=7 guibg=#519F50 ctermbg=71
-highlight DiffDelete                guifg=#E6E1DC ctermfg=7 guibg=#660000 ctermbg=52
 highlight Special                   guifg=#DA4939 ctermfg=167
 
 highlight pythonBuiltin             guifg=#6D9CBE ctermfg=73 gui=NONE cterm=NONE
@@ -78,3 +76,8 @@ highlight SpellRare                 guifg=#D75F87 ctermfg=168 guibg=NONE ctermbg
 highlight SpellCap                  guifg=#D0D0FF ctermfg=189 guibg=NONE ctermbg=NONE gui=underline cterm=underline
 highlight MatchParen                guifg=#FFFFFF ctermfg=15 guibg=#005f5f ctermbg=23
 
+" adding vim diff colors
+highlight DiffAdd                   guifg=#E6E1DC guibg=#519F50 ctermbg=2
+highlight DiffDelete                guifg=#E6E1DC ctermbg=1
+highlight DiffChange cterm=bold ctermbg=2 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermbg=28 gui=none guifg=bg guibg=Red
