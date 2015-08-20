@@ -5,7 +5,7 @@
 call pathogen#incubate()
 call pathogen#helptags()
 execute pathogen#infect()
-filetype plugin on
+filetype plugin indent on
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 set nocompatible   " Disable vi-compatibility
 
@@ -52,12 +52,12 @@ highlight Search cterm=underline
 " Swap files out of the project root
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
- 
+
 " enable phpfolding.vim only on php files
 let g:DisableAutoPHPFolding = 1
 
 " Easy motion stuff
-let g:EasyMotion_leader_key = '<Space>'
+" let g:EasyMotion_leader_key = '<Space>'
 
 "insert code comment asterisk for new comment lines
 "set formatoptions+=r
@@ -69,8 +69,8 @@ let g:miniBufExplorerAutoStart=1
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 "map \<Space> <Plug>(easymotion)
  
@@ -115,6 +115,9 @@ nmap <leader>d :Dash<cr>
 nmap <leader>x :MBEbd<cr>
 
 nmap <leader>t :!clear && phpunit -c %:p:h/../phpunit.xml %<cr>
+
+nmap ,g :echo "leader is now space!"<cr>
+nmap ,s :echo "leader is now space!"<cr>
  
 " Down is really the next line
 nnoremap j gj
@@ -171,7 +174,7 @@ nmap vs :vsplit<cr>
 nmap sp :split<cr>
 
 " toggle folds with spacebar
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+"nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Insert Mode Key Maps
@@ -273,6 +276,8 @@ function! ExecFile()
         :!php -d display_errors %        
     elseif filetype == "javascript"
         :!node -p "$(cat %)"
+    elseif filetype == "python"
+        :!python %
     else
         :echo "filetype: " . filetype 
         :echo "execute binding for this filetype is not present in vimrc"
