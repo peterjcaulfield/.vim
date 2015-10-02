@@ -7,8 +7,9 @@ call pathogen#helptags()
 execute pathogen#infect()
 filetype plugin indent on
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set nocompatible   " Disable vi-compatibility
+" set nocompatible   " Disable vi-compatibility
 
+set viminfo+=n~/.vim/.viminfo
 set t_Co=256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
@@ -185,6 +186,11 @@ imap jj <esc>
 
 " Insert hash rocket
 imap <c-l> <space>=><space>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Visual mode mappings 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap . :norm.<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntax highlighting conig 
