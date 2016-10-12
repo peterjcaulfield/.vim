@@ -7,7 +7,7 @@ call pathogen#helptags()
 execute pathogen#infect()
 filetype plugin indent on
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" set nocompatible   " Disable vi-compatibility
+set nocompatible   " Disable vi-compatibility
 
 set viminfo+=n~/.vim/.viminfo
 set t_Co=256
@@ -47,6 +47,11 @@ set wildmode=longest,list       "format wildmenu tab completion
 set wildmenu                    "make tab completion for files/buffers act like bash 
 set foldmethod=manual
 set wildignore+=*/vendor/**,*/node_modules/**,*/bower_components/**     " I don't want to pull up these folders/files when calling CtrlP
+
+"" Make it obvious where 80 characters is
+set colorcolumn=80
+set textwidth=80
+
  
 highlight Search cterm=underline
  
@@ -72,9 +77,9 @@ let g:miniBufExplorerAutoStart=1
 " like <leader>w saves the current file
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
-
-"map \<Space> <Plug>(easymotion)
+map \<Space> <Plug>(easymotion)
  
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,6 +105,7 @@ au FileType php EnableFastPHPFolds
 autocmd InsertEnter * :set norelativenumber
 autocmd InsertLeave * :set relativenumber
 
+autocmd Filetype javascript set ts=2 sw=2 sts=0 expandtab
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Normal Mode Key Maps
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,7 +215,29 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic Config 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
+"let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
+"let g:syntastic_javascript_checkers = ['eslint']
+"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Powerline config 
@@ -244,19 +272,19 @@ nmap <leader>f :call PhpCsFixerFixFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ultisnips config 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
+"let g:UltiSnipsExpandTrigger = "<nop>"
+"let g:ulti_expand_or_jump_res = 0
 
-function ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<CR>"
-    endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
-let g:snips_author="Peter Caulfield"
+"function ExpandSnippetOrCarriageReturn()
+    "let snippet = UltiSnips#ExpandSnippetOrJump()
+    "if g:ulti_expand_or_jump_res > 0
+        "return snippet
+    "else
+        "return "\<CR>"
+    "endif
+"endfunction
+"inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+"let g:snips_author="Peter Caulfield"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
