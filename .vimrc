@@ -15,14 +15,14 @@ let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 "let g:solarized_termcolors=16
 set background=dark
-colorscheme sexy-railscasts-256 
+colorscheme sexy-railscasts-256
 syntax on                       " Enable highlighting for syntax
 set guifont=Droid\ Sans\ Mono\ For\ Powerline:h16
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 set linespace=15
-set clipboard=unnamed 
+set clipboard=unnamed
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines
 set tabstop=4                   " a tab is four spaces
@@ -43,8 +43,8 @@ set visualbell                  " don't beep
 set noerrorbells                " don't beep
 set autowrite                   "Save on buffer switch
 set mouse=a
-set wildmode=longest,list       "format wildmenu tab completion 
-set wildmenu                    "make tab completion for files/buffers act like bash 
+set wildmode=longest,list       "format wildmenu tab completion
+set wildmenu                    "make tab completion for files/buffers act like bash
 set foldmethod=manual
 set wildignore+=*/vendor/**,*/node_modules/**,*/bower_components/**     " I don't want to pull up these folders/files when calling CtrlP
 
@@ -52,9 +52,9 @@ set wildignore+=*/vendor/**,*/node_modules/**,*/bower_components/**     " I don'
 set colorcolumn=80
 set textwidth=80
 
- 
+
 highlight Search cterm=underline
- 
+
 " Swap files out of the project root
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
@@ -70,15 +70,15 @@ let g:DisableAutoPHPFolding = 1
 
 "Show (partial) command in the status line
 set showcmd
- 
-let g:miniBufExplorerAutoStart=1 
+
+let g:miniBufExplorerAutoStart=1
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 map \<Space> <Plug>(easymotion)
- 
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto commands
@@ -91,11 +91,11 @@ autocmd cursormoved * set hlsearch
 " insert mode
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
- 
+
 " Auto-remove trailing spaces
-autocmd BufWritePre *.php :%s/\s\+$//e
- 
-" save and load folds 
+autocmd BufWritePre *.* :%s/\s\+$//e
+
+" save and load folds
 autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
 
@@ -125,19 +125,19 @@ nmap <leader>t :!clear && phpunit -c %:p:h/../phpunit.xml %<cr>
 
 nmap ,g :echo "leader is now space!"<cr>
 nmap ,s :echo "leader is now space!"<cr>
- 
+
 " Down is really the next line
 nnoremap j gj
 nnoremap k gk
- 
+
 "Auto change directory to match current file ,cd
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
- 
+
 "easier window navigation
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
- 
+
 "Resize splits
 nmap <C-h> :vertical resize +5<cr>
 nmap <C-j> :vertical resize -5<cr>
@@ -146,17 +146,17 @@ nmap <C-l> :res -5<cr>
 nmap 50 <c-w>=
 
 nmap <C-a> :NERDTreeToggle<cr>
- 
+
 "Load the current buffer in Chrome
 "nmap ,c :!open -a Google\ Chrome<cr>
 
 "source the current file
-"nmap <leader>s :!source %<cr> 
+"nmap <leader>s :!source %<cr>
 "home row fast saves
-nmap <leader>s :w!<cr> 
+nmap <leader>s :w!<cr>
 
 " list buffers
-  
+
 "Open files in directory of current file
 nmap <leader>l :ls<cr>
 
@@ -169,13 +169,13 @@ nmap :sp :rightbelow sp<cr>
 " Quickly go forward or backward to buffer
 nmap :bp :BufSurfBack<cr>
 nmap :bn :BufSurfForward<cr>
- 
+
 " Remove search results
 command! H let @/=""
- 
+
 " Edit todo list for project
 nmap ,todo :e todo.txt<cr>
- 
+
 " Open splits
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
@@ -188,18 +188,18 @@ nmap sp :split<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Easy escaping to normal mode
-imap jj <esc> 
+imap jj <esc>
 
 " Insert hash rocket
 imap <c-l> <space>=><space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visual mode mappings 
+" Visual mode mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap . :norm.<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntax highlighting conig 
+" syntax highlighting conig
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " docblocks get highlighting for @ declarations
 function! PhpSyntaxOverride()
@@ -213,7 +213,7 @@ augroup phpSyntaxOverride
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic Config 
+" Syntastic Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:syntastic_javascript_checkers = ['jshint', 'gjslint']
 "let g:syntastic_javascript_checkers = ['eslint']
@@ -241,7 +241,7 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Powerline config 
+" Powerline config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Powerline_symbols = 'fancy'
 set laststatus=2   " Always show the statusline
@@ -249,7 +249,7 @@ set encoding=utf-8 " Necessary to show Unicode glyphs
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerd Tree Config 
+" Nerd Tree Config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " space bar to open dirs
 let NERDTreeMapActivateNode='<space>'
@@ -258,20 +258,20 @@ let NERDTreeMapActivateNode='<space>'
 " Xdebug configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugin config
-let  g:vdebug_options = { 
+let  g:vdebug_options = {
 \ "break_on_open" : 0,
 \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-php-cs-fixer config 
+" vim-php-cs-fixer config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_enable_default_mapping = 0     
+"let g:php_cs_fixer_enable_default_mapping = 0
 
-nmap <leader>f :call PhpCsFixerFixFile()<cr>
+"nmap <leader>f :call PhpCsFixerFixFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ultisnips config 
+" ultisnips config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:UltiSnipsExpandTrigger = "<nop>"
 "let g:ulti_expand_or_jump_res = 0
@@ -303,20 +303,20 @@ endfunction
 "inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 "inoremap <s-tab> <c-n>
 
-" Execute current file 
+" Execute current file
 " TODO: add execs for other common filetypes: python etc
 function! ExecFile()
     let filetype = &ft
     if filetype == "php"
-        :!php -d display_errors %        
+        :!php -d display_errors %
     elseif filetype == "javascript"
         :!node -p "$(cat %)"
     elseif filetype == "python"
         :!python %
     else
-        :echo "filetype: " . filetype 
+        :echo "filetype: " . filetype
         :echo "execute binding for this filetype is not present in vimrc"
     endif
-endfunction 
+endfunction
 
 nmap <leader>r :call ExecFile()<cr>
