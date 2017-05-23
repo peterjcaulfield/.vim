@@ -2,3 +2,4 @@ swap/
 view/
 .viminfo
 .netrwhist
+*.tmp
